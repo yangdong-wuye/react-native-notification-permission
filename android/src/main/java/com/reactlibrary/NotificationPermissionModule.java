@@ -30,16 +30,12 @@ public class NotificationPermissionModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void hasPermission(Promise promise) {
-        promise.resolve(hasPermission("OP_POST_NOTIFICATION"));
-    }
-
-    private boolean hasPermission(String appOpsServiceId) {
-
+        String appOpsServiceId = "OP_POST_NOTIFICATION";
         Context context = getCurrentActivity().getApplicationContext();
         if (Build.VERSION.SDK_INT >= 24) {
             NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(
                     Context.NOTIFICATION_SERVICE);
-            return mNotificationManager.areNotificationsEnabled();
+            promise.resolve(mNotificationManager.areNotificationsEnabled());
         }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             AppOpsManager mAppOps = (AppOpsManager) context.getSystemService(Context.APP_OPS_SERVICE);
             ApplicationInfo appInfo = context.getApplicationInfo();
@@ -55,20 +51,12 @@ public class NotificationPermissionModule extends ReactContextBaseJavaModule {
                 Field opValue = appOpsClazz.getDeclaredField(appOpsServiceId);
                 int value = opValue.getInt(Integer.class);
                 Object result = checkOpNoThrowMethod.invoke(mAppOps, value, uid, pkg);
-                return Integer.parseInt(result.toString()) == AppOpsManager.MODE_ALLOWED;
-            } catch (InvocationTargetException e) {
+                promise.resolve(Integer.parseInt(result.toString()) == AppOpsManager.MODE_ALLOWED);
+            } catch (Exception e) {
                 e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                promise.reject(e);
             }
         }
-
-        return false;
+        promise.resolve(true);
     }
 }

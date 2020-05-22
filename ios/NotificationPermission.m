@@ -18,9 +18,9 @@ RCT_REMAP_METHOD(hasPermission,
     UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
     UIUserNotificationType type = settings.types;
     if (type == UIUserNotificationTypeNone) {
-      resolve(@[@(NO)]);
+      resolve(@(NO));
     } else {
-      resolve(@[@(YES)]);
+      resolve(@(YES));
     }
     
   } else if (systemVersion >= 10.0) {
@@ -30,10 +30,10 @@ RCT_REMAP_METHOD(hasPermission,
       {
         case UNAuthorizationStatusDenied:
         case UNAuthorizationStatusNotDetermined:
-          resolve(@[@(NO)]);
+          resolve(@(NO));
           break;
         case UNAuthorizationStatusAuthorized:
-          resolve(@[@(YES)]);
+          resolve(@(YES));
           break;
       }
     }];
