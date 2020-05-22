@@ -12,6 +12,7 @@
 ```javascript
 import NotificationPermission from 'react-native-notification-permission';
 
-// TODO: What to do with the module?
-NotificationPermission;
+NotificationPermission.hasPermission();
+
+NotificationPermission.openSystemNoticeView();
 ```
