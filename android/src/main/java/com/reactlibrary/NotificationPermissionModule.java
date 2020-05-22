@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
 
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -29,8 +29,8 @@ public class NotificationPermissionModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void hasPermission(Callback callback) {
-        callback.invoke(hasPermission("OP_POST_NOTIFICATION"));
+    public void hasPermission(Promise promise) {
+        promise.resolve(hasPermission("OP_POST_NOTIFICATION"));
     }
 
     private boolean hasPermission(String appOpsServiceId) {

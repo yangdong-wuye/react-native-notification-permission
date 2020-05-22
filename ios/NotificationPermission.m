@@ -4,7 +4,8 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(hasPermission:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(hasPermission,                                  hasPermissionWithResolver:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject) {
   float systemVersion = [[UIDevice currentDevice].systemVersion floatValue];
   
   
@@ -12,9 +13,9 @@ RCT_EXPORT_METHOD(hasPermission:(RCTResponseSenderBlock)callback) {
     UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
     UIUserNotificationType type = settings.types;
     if (type == UIUserNotificationTypeNone) {
-      callback(@[@(NO)]);
+      resolve(@[@(NO)]);
     } else {
-      callback(@[@(YES)]);
+      resolve(@[@(YES)]);
     }
     
   } else if (systemVersion >= 10.0) {
@@ -24,10 +25,10 @@ RCT_EXPORT_METHOD(hasPermission:(RCTResponseSenderBlock)callback) {
       {
         case UNAuthorizationStatusDenied:
         case UNAuthorizationStatusNotDetermined:
-          callback(@[@(NO)]);
+          resolve(@[@(NO)]);
           break;
         case UNAuthorizationStatusAuthorized:
-          callback(@[@(YES)]);
+          resolve(@[@(YES)]);
           break;
       }
     }];
