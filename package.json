@@ -1,7 +1,7 @@
 {
   "name": "react-native-notification-permission",
   "title": "React Native Notification Permission",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React Native Check Has Notification Permission",
   "main": "index.js",
   "types": "index.d.ts",
