@@ -8,6 +8,11 @@
 
 `$ react-native link react-native-notification-permission`
 
+### ios
+
+`$ pod install`
+
+
 ## Usage
 ```javascript
 import NotificationPermission from 'react-native-notification-permission';
