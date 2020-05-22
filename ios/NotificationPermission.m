@@ -1,11 +1,16 @@
 #import "NotificationPermission.h"
 
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
 @implementation NotificationPermission
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(hasPermission,                                  hasPermissionWithResolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject) {
+RCT_REMAP_METHOD(hasPermission,
+                 hasPermissionWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject) {
   float systemVersion = [[UIDevice currentDevice].systemVersion floatValue];
   
   
@@ -33,5 +38,7 @@ RCT_EXPORT_METHOD(hasPermission,                                  hasPermissionW
       }
     }];
   }
+  
+  
 }
 @end
