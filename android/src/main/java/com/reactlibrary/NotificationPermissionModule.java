@@ -14,7 +14,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import static android.app.Notification.EXTRA_CHANNEL_ID;
@@ -73,11 +72,11 @@ public class NotificationPermissionModule extends ReactContextBaseJavaModule {
             Intent intent = new Intent();
             intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
 
-            //这种方案适用于 API 26, 即8.0（含8.0）以上可以用
+            //适用于 API 26, 即8.0（含8.0）以上可以用
             intent.putExtra(EXTRA_APP_PACKAGE, this.reactContext.getPackageName());
             intent.putExtra(EXTRA_CHANNEL_ID, this.reactContext.getApplicationInfo().uid);
 
-            //这种方案适用于 API21——25，即 5.0——7.1 之间的版本可以使用
+            //API21——25，即 5.0——7.1 之间的版本可以使用
             intent.putExtra("app_package", this.reactContext.getPackageName());
             intent.putExtra("app_uid", this.reactContext.getApplicationInfo().uid);
 
@@ -86,10 +85,9 @@ public class NotificationPermissionModule extends ReactContextBaseJavaModule {
             this.reactContext.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
-            // 出现异常则跳转到应用设置界面：锤子
+            // 出现异常则跳转到应用设置界面
             Intent intent = new Intent();
 
-            //下面这种方案是直接跳转到当前应用的设置界面。
             intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             Uri uri = Uri.fromParts("package", this.reactContext.getPackageName(), null);
             intent.setData(uri);

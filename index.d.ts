@@ -1,5 +1,5 @@
 declare module NotificationPermission {
-    function hasPermission(): Promise<string>;
+    function hasPermission(): Promise<boolean>;
     function openSystemNoticeView(): void;
 }
 
