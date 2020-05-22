@@ -1,8 +1,8 @@
 {
   "name": "react-native-notification-permission",
   "title": "React Native Notification Permission",
-  "version": "1.0.0",
-  "description": "TODO",
+  "version": "1.0.1",
+  "description": "React Native Check Has Notification Permission",
   "main": "index.js",
   "files": [
     "README.md",
@@ -23,8 +23,8 @@
     "react-native"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
+    "name": "wuye-yangdong",
+    "email": "wuye_666@163.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",

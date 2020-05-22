@@ -4,22 +4,15 @@
 
 `$ npm install react-native-notification-permission --save`
 
-_或者_
+`或者`
 
 `$ yarn add react-native-notification-permission`
 
-### react-native >= 0.60
+`然后在项目跟目录下运行`
 
 `$ cd ios`
 
 `$ pod install`
-
-### react-native < 0.60
-
-_自动_
-
-`$ react-native link react-native-notification-permission`
-
 
 
 ## Usage
